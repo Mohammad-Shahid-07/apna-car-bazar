@@ -18,6 +18,12 @@
   .paddings {
     @apply sm:p-16 xs:p-8 px-6 py-12;
   }
+  .paddings-x {
+    @apply sm:px-16 xs:px-8;
+  }
+  .margins-x {
+    @apply sm:mx-16 xs:mx-8;
+  }
   .feature-heading {
     @apply flex justify-center items-baseline;
   }
@@ -26,7 +32,7 @@
   }
 
   .input-search {
-    @apply border shadow-[0px_0px_128px_rgba(47,46,65,0.69)] backdrop-blur-2xl transition-all duration-[0.3s] h-12 rounded-sm border-solid border-[rgba(255,255,255,0.45)] hover:border-2 hover:border-solid hover:border-[rgba(255,255,255,0.6)];
+    @apply border text-white px-16  shadow-[0px_0px_128px_rgba(47,46,65,0.69)] backdrop-blur-2xl transition-all duration-300 h-12 rounded-sm border-solid border-[rgba(255,255,255,0.45)] hover:border-2 hover:border-solid hover:border-[rgba(255,255,255,0.6)];
     background: linear-gradient(
       114deg,
       rgba(234, 234, 234, 0.04) -17.11%,
@@ -54,5 +60,14 @@
     outline: none;
 
     /* Remove the default focus outline */
+  }
+  .input-normal {
+    @apply border text-white shadow-[0px_0px_128px_rgba(47,46,65,0.69)] backdrop-blur-2xl transition-all duration-300  rounded-sm border-solid border-[rgba(255,255,255,0.45)] hover:border-2 hover:border-solid hover:border-[rgba(255,255,255,0.6)];
+    background: transparent;
+  }
+  .btn {
+    @apply px-5 py-3 rounded;
+
+    background: linear-gradient(105deg, #da0c2f -18.49%, #28171a 108.66%);
   }
 }
