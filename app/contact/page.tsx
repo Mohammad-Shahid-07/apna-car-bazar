@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import emailjs from "emailjs-com";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 const Page = () => {
   const [formData, setFormData] = useState({
@@ -9,28 +11,57 @@ const Page = () => {
     message: "",
     whatsapp: "",
   });
+  const { toast } = useToast(); // Get the toast function
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (formData.name && formData.email && formData.message) {
-      const form = e.currentTarget;
-      emailjs
-        .sendForm(
-          "service_a5m9nwd",
-          "template_v40vdp5",
-          form,
-          "sbZzDCRr8X1VEU5Kr",
-        )
-        .then(
-          (result: any) => {
-            console.log(result.text);
-          },
-          (error: any) => {
-            console.log(error.text);
-          },
-        );
+    if (!formData.name || !formData.email || !formData.message) {
+      // Show a toast if any required input is missing
+      toast({
+        variant: "destructive",
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+      });
+      return;
     }
+
+    const form = e.currentTarget;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    emailjs
+      .sendForm(
+        "service_a5m9nwd",
+        "template_v40vdp5",
+        form,
+        "sbZzDCRr8X1VEU5Kr",
+      )
+      .then(
+        (result) => {
+          // Show a success toast when the email is sent successfully
+          toast({
+            title: "Message Received",
+            description: "We will contact you as soon as possible.",
+          });
+          setFormData({
+            name: "",
+            email: "",
+            message: "",
+            whatsapp: "",
+          });
+         
+        
+        },
+        (error) => {
+          // Show an error toast when there's a problem
+          toast({
+            variant: "destructive",
+            title: "Uh oh! Something went wrong.",
+            description: "There was a problem with your request.",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          });
+          console.log(error.text);
+        },
+      );
+
   };
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -73,9 +104,9 @@ const Page = () => {
         WhatsApp (optional):
         <input
           type="number"
-          name="email"
+          name="whatsapp"
           placeholder="Your WhatsApp No."
-          value={formData.email}
+          value={formData.whatsapp}
           onChange={handleInputChange}
           className="input-normal h-12 appearance-none focus:outline-none focus:ring-2 focus:ring-transparent focus:border-transparent"
         />
