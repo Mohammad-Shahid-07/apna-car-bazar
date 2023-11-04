@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+// import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-
+import NextTopLoader from "nextjs-toploader";
 const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,9 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className }>
+      <body className={inter.className}>
         <main className="bg-dark-primary flex flex-col">
           <div className="flex flex-col hero-height  w-max-[1440px]">
+            <NextTopLoader color="#D30427" />
             <Navbar />
             {children}
             <Toaster />
