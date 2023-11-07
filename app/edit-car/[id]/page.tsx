@@ -46,6 +46,7 @@
       kilometers: "",
       images: [],
     });
+    
     const [loading, setLoading] = useState(true);
     const pathname = usePathname();
     const router = useRouter();
@@ -84,20 +85,14 @@
       }
     };
     const handleImageDelete = (imageToDelete: string) => {
-      // Extract the fileKey from the image URL
-      
-      const fileKey = imageToDelete.replace("https://utfs.io/f/", "");
-      fileKey.trim()
       // Create a new array of image URLs without the one to be deleted
+      setImageKey((prevImageKeys) => [...prevImageKeys, imageToDelete.replace("https://utfs.io/f/", "").trim()]);
       const newImages = formData.images.filter((image) => image !== imageToDelete);
     
       // Update both the imageKey state and the form data
-      setImageKey((prevImageKeys) => [...prevImageKeys, fileKey]); // Add the fileKey
-    
-      // Remove the console.log(imageKey) from here
-    
       setFormData({ ...formData, images: newImages });
     };
+    
     
     // Add a useEffect to log the updated imageKey state
     useEffect(() => {
