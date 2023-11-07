@@ -74,7 +74,7 @@ const CarDetails = async ({ params }: PageProps) => {
 
   </section>
     {/* Conditionally display the "Make an Offer" section for screens wider than 1440px */}
-    <div className="border-t-4 border-gray-400">
+    <div className="hidden border-t-4 border-gray-400">
         <h2 className="text-2xl  text-center font-bold text-white pt-5">
           Make An Offer / Ask A Question
         </h2>
