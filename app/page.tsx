@@ -8,7 +8,7 @@ export default function Home() {
         <section>
           <HomeHeader />
           <HomeAbout />
-          
+        
         </section>
       
    

@@ -22,6 +22,7 @@ const config: Config = {
       },
       boxShadow: {
         card: "0px 4px 8px 0px #787878",
+        smallcard: "0px 4px 8px 0px #787878",
       },
       dropShadow: {
         input: "(0px 0px 128px rgba(47, 46, 65, 0.69)",

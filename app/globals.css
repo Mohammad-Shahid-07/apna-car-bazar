@@ -28,7 +28,7 @@
     @apply flex justify-center items-baseline;
   }
   .card {
-    @apply rounded-[9px]  shadow-card;
+    @apply rounded-[9px]  shadow-card w-[291px] min-h-[365px] max-w-[358px] max-h-[385px];
   }
 
   .input-search {
@@ -70,4 +70,7 @@
 
     background: linear-gradient(105deg, #da0c2f -18.49%, #28171a 108.66%);
   }
+  .hero-carousel{
+    @apply w-full;
+}
 }

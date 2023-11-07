@@ -10,6 +10,10 @@ import {
 } from "@/components/ui/select";
 import { UploadDropzone } from "@uploadthing/react";
 import { OurFileRouter } from "../api/uploadthing/core";
+import { toast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { addCar } from "@/lib/cars.actions";
+import { usePathname, useRouter } from "next/navigation";
 const Upload = () => {
   const [formData, setFormData] = useState<{
     name: string;
@@ -19,7 +23,7 @@ const Upload = () => {
     priceNegotiable: boolean;
     fuel: string;
     kilometers: string;
-    images: string[]; // Assuming images are stored as URLs
+    images: string[];
   }>({
     name: "",
     price: "",
@@ -30,14 +34,16 @@ const Upload = () => {
     kilometers: "",
     images: [],
   });
+  const pathname = usePathname();
+  const router = useRouter();
   const customUploadDropzoneStyles = {
-    container: 'bg-dark-primary p-4 rounded-lg border-2', // Example background and padding
-    uploadIcon: 'text-white', // Example text color for the upload icon
-    label: 'text-lg font-bold text-white', // Example text size and font weight for the label
-    allowedContent: 'text-gray-500', // Example text color for allowed content
-    button: 'btn', // Example button styling
+    container: "bg-dark-primary p-4 rounded-lg border-2", // Example background and padding
+    uploadIcon: "text-white", // Example text color for the upload icon
+    label: "text-lg font-bold text-white", // Example text size and font weight for the label
+    allowedContent: "text-gray-500", // Example text color for allowed content
+    button: "btn", // Example button styling
   };
-  
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
 
@@ -67,22 +73,54 @@ const Upload = () => {
       fuel: selectedFuel, // Update the "fuel" field with the selected value
     });
   };
-  console.log("fuel: ", formData.fuel);
+  
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
-  };
   const handleUploadComplete = (res: any) => {
-    // Do something with the response
     if (res && res.length > 0) {
-      const imageUrls = res.map((image: { url: string }) => image.url);
+      const updatedImages = res.map((image: { url: string }) => image.url);
+      console.log(updatedImages);
+      
       setFormData((prevFormData) => ({
         ...prevFormData,
-        images: [...prevFormData.images, ...imageUrls], // Concatenate the new URLs
+        images: [...prevFormData.images, ...updatedImages], // Spread the elements of updatedImages
       }));
     }
   };
+  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (
+      !formData.name ||
+      !formData.price ||
+      !formData.manufacturingYear ||
+      !formData.owner ||
+      !formData.fuel ||
+      !formData.kilometers ||
+      formData.images.length === 0
+    ) {
+     return toast({
+        variant: "destructive",
+        title: "Missing Values",
+        description: "You have missed an input. Please fill all the given inputs.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
+    }
+  
+    try {
+     await addCar({
+      ...formData,
+      path: pathname,
+      }).then((res) => {
+         router.push("/cars");
+      })
+    } catch (error) {
+      console.error(error);
+      // Handle errors, if any
+    }
+  };
+ 
+  
+  
   return (
     <section>
       <form

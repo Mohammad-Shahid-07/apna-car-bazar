@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-// import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -21,14 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="bg-dark-primary flex flex-col">
-          <div className="flex flex-col hero-height  w-max-[1440px]">
+        <main className="bg-dark-primary hero-height flex flex-col">
+          <div className="flex flex-col   ">
             <NextTopLoader color="#D30427" />
             <Navbar />
             {children}
             <Toaster />
-            <Footer />
           </div>
+            <Footer />
         </main>
       </body>
     </html>

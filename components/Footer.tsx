@@ -58,6 +58,35 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+        <div className="text-center">
+          <h5 className="para-2 !text-white !font-bold">Our Contact Info</h5>
+          <ul className="text-center ">
+            <li className="ml-5 ">
+              <Link href="#" className="flex gap-2 mb-2 text-white">
+                {" "}
+                <Image
+                  src="/assets/icons/gmail.svg"
+                  width={25}
+                  height={25}
+                  alt="insta"
+                />{" "}
+                Pb89209@gmail.com
+              </Link>
+            </li>
+            <li className="ml-5 ">
+              <Link href="#" className="flex gap-2 text-white">
+                {" "}
+                <Image
+                  src="/assets/icons/whatsapp.svg"
+                  width={25}
+                  height={25}
+                  alt="facebook"
+                />{" "}
+                +91 7023262976
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
       <p>
       <span className="text-white text-center block border-t-2 pt-2 border-gray-700">© {currentYear} Apna Car Bazar. All rights reserved.</span>

@@ -1,7 +1,14 @@
 import Image from "next/image";
 import React from "react";
+import HeroCarousel from "./HeroCarousel";
 
 const HomeHeader = () => {
+  const images = [
+    '/assets/images/home2.png',
+    '/assets/images/home1.png',
+    '/assets/images/home3.png',
+    '/assets/images/home4.png',
+  ]
   return (
     <section className="flex  flex-col justify-center items-center mt-5">
       <div>
@@ -17,12 +24,7 @@ const HomeHeader = () => {
         </p>
       </div>
       <div className="">
-        <Image
-          src="/assets/images/mahindra-scorpio.png"
-          width={500}
-          height={500}
-          alt="Car"
-        />
+        <HeroCarousel images={images}  />
       </div>
       <div className="flex paddings gap-8  max-md:flex-col flex-wrap justify-center items-center   leading-8 ">
         <div className="text-center pr-8 max-md:pt-5 max-md:border-t-2 md:border-r-2 border-gray-700 w-[250px]">
@@ -66,6 +68,7 @@ const HomeHeader = () => {
           </p>
         </div>
       </div>
+    
     </section>
   );
 };

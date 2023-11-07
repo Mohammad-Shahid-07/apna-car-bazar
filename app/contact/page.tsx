@@ -27,12 +27,20 @@ const Page = () => {
 
     const form = e.currentTarget;
     window.scrollTo({ top: 0, behavior: "smooth" });
-    emailjs
-      .sendForm(
-        "service_a5m9nwd",
-        "template_v40vdp5",
-        form,
-        "sbZzDCRr8X1VEU5Kr",
+
+      emailjs
+      .send(
+        `service_a5m9nwd`,
+         `template_v40vdp5`,
+        {
+          from_name: formData.name,
+          to_name: "Mohammad Shahid",
+          message: formData.message,
+          whatsapp: formData.whatsapp,
+          from_email: formData.email,
+          to_email: "nomore0407@gmail.com",
+        },
+        'sbZzDCRr8X1VEU5Kr',
       )
       .then(
         (result) => {
@@ -47,8 +55,6 @@ const Page = () => {
             message: "",
             whatsapp: "",
           });
-         
-        
         },
         (error) => {
           // Show an error toast when there's a problem
@@ -61,7 +67,6 @@ const Page = () => {
           console.log(error.text);
         },
       );
-
   };
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
