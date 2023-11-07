@@ -94,16 +94,15 @@ const HomeAbout = () => {
       </div>
       <div>
         <div className="bg-dark-secondary mt-12 flex flex-col  max-w-screen-2xl mx-auto items-center justify-center w-full paddings">
-        <h4 className="h1-heading">Find Us Now</h4>
-          <div>
+          <h4 className="h1-heading">Find Us Now</h4>
+          <div className="relative w-full max-h-80 max-w-80  aspect-square ">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.019708679844!2d74.6698647752796!3d26.487310276903283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396be6650a5e0bad%3A0xfa00da1f9e454a7b!2sApna%20Car%20Bazaar!5e0!3m2!1sen!2sin!4v1699341537786!5m2!1sen!2sin"
-              width="600"
-              height="450"
+            
               loading="lazy"
+              className=" w-full h-full"
             ></iframe>
           </div>
-     
         </div>
       </div>
     </section>
