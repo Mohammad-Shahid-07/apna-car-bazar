@@ -32,7 +32,7 @@ const NwCom = ({ onAuthentication } : any  ) => {
       value={password}
       onChange={(e) => setPassword(e.target.value)}
       name="password"
-      className="input-search   rounded-sm  text-white-800  !ring-0 !ring-offset-0 placeholder:text-white-800 "
+      className="input-search paddings-x w-full  !ring-0 !ring-offset-0 placeholder:text-white-800 "
 
     />
    

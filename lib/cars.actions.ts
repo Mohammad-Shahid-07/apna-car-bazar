@@ -29,8 +29,6 @@ export async function addCar({
 }: Props) {
   connectToDatabase();
   try {
-   
-
     const car = new Car({
       name,
       price,
@@ -103,8 +101,24 @@ export async function fillDetails(id: string) {
 export async function deleteCar(id: string, path: string) {
   connectToDatabase();
   try {
-    await Car.findByIdAndDelete(id);
-    revalidatePath(path);
+    const car = await Car.findById(id);
+
+    if (car) {
+      const imgIds = car.images.map((imageUrl: string) => {
+        // Remove "https://utfs.io/f/" from the image URL
+        return imageUrl.replace("https://utfs.io/f/", "");
+      });
+
+      // Delete files associated with imgIds
+      if (imgIds && imgIds.length > 0) {
+        await utapi.deleteFiles(imgIds);
+      }
+
+      // Delete the car
+      await Car.findByIdAndDelete(id);
+
+      revalidatePath(path);
+    }
   } catch (error) {
     console.log(error);
   }
@@ -150,7 +164,6 @@ export async function updateCar({
 }: UpdateProps) {
   connectToDatabase();
   try {
-  
     if (imgIds && imgIds.length > 0) {
       await utapi.deleteFiles(imgIds);
     }

@@ -18,7 +18,7 @@ const Footer = () => {
           <h5 className="para-2 !text-white !font-bold">Our Social Media</h5>
           <ul className="text-center ">
             <li className="ml-5 ">
-              <Link href="#" className="flex gap-2 mb-2 text-white">
+              <Link href="https://instagram.com/apna_car_bajar?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" target="_blank"  className="flex gap-2 mb-2 text-white hover:text-prime">
                 {" "}
                 <Image
                   src="/assets/icons/instagram.svg"
@@ -30,7 +30,7 @@ const Footer = () => {
               </Link>
             </li>
             <li className="ml-5 ">
-              <Link href="#" className="flex gap-2 text-white">
+              <Link href="https://www.facebook.com/profile.php?id=100063911410942&mibextid=LQQJ4d" target="_blank" className="flex gap-2 text-white hover:text-prime">
                 {" "}
                 <Image
                   src="/assets/icons/facebook.svg"
@@ -47,12 +47,12 @@ const Footer = () => {
           <h5 className="para-2 !text-white !font-bold">Other Links</h5>
           <ul className=" w-fit text-center">
             <li>
-              <Link href="#" className="flex gap-2  text-white">
+              <Link href="/privacy" className="flex gap-2  text-white">
                 Privacy Polacy
               </Link>
             </li>
             <li>
-              <Link href="#" className="flex gap-2 text-white">
+              <Link href="/term-conditions" className="flex gap-2 text-white">
                 Terms & Conditions
               </Link>
             </li>
@@ -62,25 +62,27 @@ const Footer = () => {
           <h5 className="para-2 !text-white !font-bold">Our Contact Info</h5>
           <ul className="text-center ">
             <li className="ml-5 ">
-              <Link href="#" className="flex gap-2 mb-2 text-white">
+              <Link href="mailto:Pb89209@gmail.com" target="_blank" className="flex gap-2 mb-2 text-white"
+              
+              >
                 {" "}
                 <Image
                   src="/assets/icons/gmail.svg"
                   width={25}
                   height={25}
-                  alt="insta"
+                  alt="gmail"
                 />{" "}
                 Pb89209@gmail.com
               </Link>
             </li>
             <li className="ml-5 ">
-              <Link href="#" className="flex gap-2 text-white">
+              <Link href="https://wa.me/7023262976" target="_blank"  className="flex gap-2 text-white">
                 {" "}
                 <Image
                   src="/assets/icons/whatsapp.svg"
                   width={25}
                   height={25}
-                  alt="facebook"
+                  alt="whatsapp"
                 />{" "}
                 +91 7023262976
               </Link>

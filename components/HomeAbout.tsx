@@ -11,17 +11,18 @@ const HomeAbout = () => {
             <h3 className="h1-heading">
               About <span className="font-bold"> Apna Car Bazar </span>
             </h3>
-            <p className="para-2 max-w-7xl ">
-              Apna Car Bazar is your destination for discovering a wide range of
-              old cars that tell unique stories. Whether you're looking to buy a
-              classic beauty or part with a beloved vehicle, we provide a
-              platform where enthusiasts and sellers come together.
+            <p className="para-2 max-w-7xl">
+              At Apna Car Bazar, you can find the best-used cars, which are
+              verified. You can purchase second-hand cars with ease and even get
+              up to 90% financing.
               <br />
               <br />
-              Explore our collection, find the car that speaks to you, and trade
-              on your terms. Your road, your rules – start your journey with
-              Apna Car Bazar today.
+              Explore our collection, find the second-hand car that speaks to
+              you, and buy on your terms. Sell your car from your home. The best
+              place to buy and sell used/second-hand cars – start your journey
+              with Apna Car Bazar today.
             </p>
+
             <Link
               href="/cars"
               className="rounded-full w-fit  mt-11 text-white  bg-prime flex px-5 py-3"
@@ -52,7 +53,7 @@ const HomeAbout = () => {
               Finance Options Available with Leading Banks
             </h3>
             <p className="para-1 max-w-7xl ">
-              Discover a world of financial possibilities with Apna Car Bazar.
+            Flexible Financing Options for Your Next Car Purchase at Apna Car Bazar.
               We've partnered with some of the most reputable banks to offer you
               attractive financing options for your dream car. Whether you're
               eyeing a classic beauty or a modern marvel, we've got your
@@ -73,8 +74,14 @@ const HomeAbout = () => {
             </ul>
             <p className="para-1 max-w-7xl ">
               {" "}
-              With these banks, you can enjoy up to 90% financing at the lowest
-              interest rates. The application process is incredibly easy,
+              With these banks, you can enjoy{" "}
+              <span className="text-prime font-bold">up to 90% </span>financing
+              at the{" "}
+              <span className="text-prime font-bold">
+                lowest interest rates
+              </span>
+              . The application process is
+              <span className="text-prime font-bold"> incredibly easy,</span>
               ensuring a seamless experience.
               <br />
               <br />
@@ -98,7 +105,6 @@ const HomeAbout = () => {
           <div className="relative w-full max-h-80 max-w-80  aspect-square ">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571.019708679844!2d74.6698647752796!3d26.487310276903283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396be6650a5e0bad%3A0xfa00da1f9e454a7b!2sApna%20Car%20Bazaar!5e0!3m2!1sen!2sin!4v1699341537786!5m2!1sen!2sin"
-            
               loading="lazy"
               className=" w-full h-full"
             ></iframe>
