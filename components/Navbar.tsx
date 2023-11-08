@@ -45,7 +45,7 @@ const Navbar = () => {
         >
           Sell Your Car{" "}
           <Image
-            src="/assets/icons/arrow 1.svg"
+            src="/assets/icons/Arrow-1.svg"
             className="ml-2 rotate-[-45deg]"
             height={15}
             width={18}
