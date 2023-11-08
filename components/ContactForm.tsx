@@ -3,7 +3,9 @@ import { useState } from "react";
 import emailjs from "emailjs-com";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-
+import { usePathname } from "next/navigation";
+import { UploadDropzone } from "@uploadthing/react";
+import { OurFileRouter } from "@/app/api/uploadthing/core";
 const ContactForm = ({ carName }: { carName: string }) => {
   const [loading, setLoading] = useState(false); // Set loading state [true, false
   const [formData, setFormData] = useState({
@@ -11,9 +13,37 @@ const ContactForm = ({ carName }: { carName: string }) => {
     email: "",
     message: "",
     whatsapp: "",
+    image: "",
+    price: "",
+    manufacturingYear: "",
+    owner: "",
   });
   const { toast } = useToast(); // Get the toast function
+  const path = usePathname();
+  const customUploadDropzoneStyles = {
+    container: "bg-dark-primary p-4 rounded-lg border-2", // Example background and padding
+    uploadIcon: "text-white", // Example text color for the upload icon
+    label: "text-lg font-bold text-white", // Example text size and font weight for the label
+    allowedContent: "text-gray-500", // Example text color for allowed content
+    button: "btn", // Example button styling
+  };
 
+  const handleUploadComplete = (res: any) => {
+    if (res && res.length > 0) {
+      const updatedImages = res.map((image: { url: string }) => image.url);
+
+      toast({
+        title: "Your Images have been uploaded",
+        description:
+          "Your images have been uploaded successfully. You can now submit the form.",
+        action: <ToastAction altText="Okay">Okay</ToastAction>,
+      });
+      setFormData({
+        ...formData,
+        image: updatedImages[0],
+      });
+    }
+  };
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
@@ -24,6 +54,8 @@ const ContactForm = ({ carName }: { carName: string }) => {
         title: "Missing Information",
         description: "Please fill in all required fields.",
       });
+      setLoading(false);
+
       return;
     }
 
@@ -58,6 +90,12 @@ const ContactForm = ({ carName }: { carName: string }) => {
             email: "",
             message: "",
             whatsapp: "",
+            image: "",
+            price: "",
+            manufacturingYear: "",
+            owner: "",
+
+
           });
         },
         (error) => {
@@ -120,6 +158,46 @@ const ContactForm = ({ carName }: { carName: string }) => {
           className="input-normal h-12 appearance-none focus:outline-none focus:ring-2 focus:ring-transparent focus:border-transparent"
         />
       </label>
+      {path === "/sell-car" && (
+
+      <div className="flex gap-5 max-lg:flex-col items-center max-w-[700px] justify-evenly  max-lg:w-full">
+            <label className="flex flex-col max-w-[700px] w-3/4 max-sm:w-full">
+              Price:
+              <input
+                type="text"
+                name="price"
+                placeholder="Price"
+                value={formData.price}
+                onChange={handleInputChange}
+                className="input-normal h-12 appearance-none focus:outline-none focus:ring-2 focus:ring-transparent focus:border-transparent"
+              />
+            </label>
+
+            <label className="flex flex-col max-w-[700px] w-3/4 max-sm:w-full">
+              Manufacturing Year:
+              <input
+                type="text"
+                name="manufacturingYear"
+                placeholder="Manufacturing Year"
+                value={formData.manufacturingYear}
+                onChange={handleInputChange}
+                className="input-normal h-12 appearance-none focus:outline-none focus:ring-2 focus:ring-transparent focus:border-transparent"
+              />
+            </label>
+
+            <label className="flex flex-col max-w-[700px] w-3/4 max-sm:w-full">
+              Owner:
+              <input
+                type="text"
+                name="owner"
+                placeholder="Owner"
+                value={formData.owner}
+                onChange={handleInputChange}
+                className="input-normal h-12 appearance-none focus:outline-none focus:ring-2 focus:ring-transparent focus:border-transparent"
+              />
+            </label>
+          </div>
+      )}
       <label className="flex flex-col max-w-[700px] w-3/4 max-sm:w-full">
         Message:
         <textarea
@@ -127,10 +205,24 @@ const ContactForm = ({ carName }: { carName: string }) => {
           placeholder="Your Message"
           value={formData.message}
           onChange={handleInputChange}
-          rows={15}
+          rows={5}
           className="input-normal appearance-none focus:outline-none focus:ring-2 focus:ring-dark-secondary focus:border-transparent"
         />
       </label>
+      {path === "/sell-car" && (
+        <UploadDropzone<OurFileRouter>
+          endpoint="imageUploader"
+          onClientUploadComplete={handleUploadComplete}
+          onUploadError={() => {}}
+          appearance={{
+            container: customUploadDropzoneStyles.container,
+            uploadIcon: customUploadDropzoneStyles.uploadIcon,
+            label: customUploadDropzoneStyles.label,
+            allowedContent: customUploadDropzoneStyles.allowedContent,
+            button: customUploadDropzoneStyles.button,
+          }}
+        />
+      )}
       {loading ? (
         <button className="btn">Sending...</button>
       ) : (
