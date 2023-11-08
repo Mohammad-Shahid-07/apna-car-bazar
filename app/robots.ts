@@ -1,5 +1,14 @@
-User-Agent: *
-Disallow:
+import { MetadataRoute } from 'next'
+ 
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: '/private/',
+    },
+    sitemap: 'https://apnacarbazar.in/sitemap.xml',
+  }
+}
 
 
-Sitemap: https://apnacarbazar.in/sitemap.xml
